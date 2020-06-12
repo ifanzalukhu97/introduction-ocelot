@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Ocelot.DependencyInjection;
 
 namespace introduction_ocelot
 {
@@ -18,7 +19,7 @@ namespace introduction_ocelot
                     config
                         .SetBasePath(host.HostingEnvironment.ContentRootPath)
                         .AddJsonFile("appsettings.json", true, true)
-                        .AddJsonFile("ocelot.json")
+                        .AddOcelot("RouteGateway", host.HostingEnvironment)
                         .AddEnvironmentVariables();
                 })
                 .UseStartup<Startup>()
